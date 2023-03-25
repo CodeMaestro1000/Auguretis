@@ -1,0 +1,89 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: users-backend
+    labels:
+        app: users-backend
+    namespace: stack-experts
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: users-backend
+    template:
+        metadata:
+            labels:
+                app: users-backend
+        spec:
+            containers:
+                - name: users-rpc-service
+                  image: users:latest
+                  command: ["python", "consumer.py"]
+                  imagePullPolicy: Never
+                  env:
+                  - name: AMPQ_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: ampq
+                  - name: POSTGRES_HOST
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_host
+                  - name: POSTGRES_USERNAME
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_username
+                  - name: POSTGRES_PASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_password
+                  - name: POSTGRES_PORT
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_port
+                  - name: POSTGRES_DB
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_db
+                  ports:
+                     - containerPort: 8000
+
+                - name: users-rest-service
+                  image: users:latest
+                  command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+                  imagePullPolicy: Never
+                  env:
+                  - name: POSTGRES_HOST
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_host
+                  - name: POSTGRES_USERNAME
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_username
+                  - name: POSTGRES_PASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_password
+                  - name: POSTGRES_PORT
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_port
+                  - name: POSTGRES_DB
+                    valueFrom:
+                      secretKeyRef:
+                        name: users-env-variables
+                        key: postgres_db
+                  ports:
+                     - containerPort: 8001

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-body">
+    <!-- hero-body for vertical centering -->
+    <div class="container">
+        {% if errors %}
+            <article class="message is-danger">
+                <div class="message-header">
+                    <p>Error(s)</p>
+                </div>
+                {% for error in errors %}
+                    <div class="message-body">
+                       <small>{{error}}</small> 
+                    </div>
+                {% endfor %}
+            </article>
+        {% endif %}
+        
+        <!-- container for horizontal centering -->
+        <div class="columns is-centered">
+            <div class="column is-half box p-6">
+                <h1 class="is-size-4-desktop has-text-centered has-text-weight-bold mb-2">
+                    Sign Up
+                 </h1>
+
+                <form action="{{ url_for('signup') }}" method="post" autocomplete="new-password" id="signup-form">
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" placeholder="Enter your preferred username" value="" id="username" name="username">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <span class="icon is-small is-right is-hidden" id="username-good">
+                                <i class="fas fa-check has-text-success"></i>
+                            </span>
+                            <span class="icon is-small is-right is-hidden" id="username-bad">
+                                <i class="fas fa-exclamation-triangle has-text-danger"></i>
+                            </span>
+                        </div>
+                        <p class="help is-hidden" id="username-help"></p>
+                        
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input" type="email" placeholder="Enter a valid email address" value="" id="email" name="email">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right is-hidden" id="email-good">
+                                <i class="fas fa-check has-text-success"></i>
+                            </span>
+                            <span class="icon is-small is-right is-hidden" id="email-bad">
+                                <i class="fas fa-exclamation-triangle has-text-danger"></i>
+                            </span>
+                        </div>
+                        <p class="help is-hidden" id="email-help"></p>
+                    </div>
+    
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input" type="password" placeholder="Enter Password" value="" id="password" name="password">
+                            <span class="icon is-small is-left">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <span class="icon is-small is-right is-hidden" id="password-good">
+                                <i class="fas fa-check has-text-success"></i>
+                            </span>
+                            <span class="icon is-small is-right is-hidden" id="password-bad">
+                                <i class="fas fa-exclamation-triangle has-text-danger"></i>
+                            </span>
+                        </div>
+                        <p class="help is-hidden" id="password-help"></p>
+                    
+                    </div>
+    
+                    <div class="field">
+                        <label class="label">Confirm Password</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input" type="password" placeholder="Confirm Password" value="" id="password-confirm">
+                            <span class="icon is-small is-left">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <span class="icon is-small is-right is-hidden" id="confirm-password-good">
+                                <i class="fas fa-check has-text-success"></i>
+                            </span>
+                            <span class="icon is-small is-right is-hidden" id="confirm-password-bad">
+                                <i class="fas fa-exclamation-triangle has-text-danger"></i>
+                            </span>
+                        </div>
+                        <p class="help is-hidden" id="confirm-password-help"></p>
+                    </div>
+                      
+                      
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox" id="t-c">
+                                I agree to the <a href="#">terms and conditions</a>
+                            </label>
+                        </div>
+                    </div>
+                      
+                      
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button type="button" class="button is-link" id="signup-submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block script %}
+      <script src="{{ url_for('static', path='js/app.js') }}"></script>
+      <script src="{{ url_for('static', path='js/signup.js') }}" ></script>
+    {% endblock script %}

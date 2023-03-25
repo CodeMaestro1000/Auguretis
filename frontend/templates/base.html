@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/app.css') }}">
+    <link rel="icon" href="{{ url_for('static', path='images/lightbulb.png') }}" type="image/x-icon">
+    {% block title %}
+        <title>Auguretis AI</title>
+    {% endblock title %}
+    <script src="https://kit.fontawesome.com/424aa8996a.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="hero is-fullheight has-background-light">
+        <nav class="navbar has-shadow has-background-white p-2" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item has-text-info-dark" href="{{ url_for('home') }}">
+                <i class="fa-regular fa-lightbulb fa-2x"></i>
+                Auguretis
+              </a>
+          
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="my-navbar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+          
+            <div id="my-navbar" class="navbar-menu">
+              <div class="navbar-start">
+                <a class="navbar-item" href="{{ url_for('home') }}">
+                    <i class="fa-solid fa-house"></i>
+                    &nbsp; Home
+                </a>
+          
+                <a class="navbar-item">
+                    <i class="fa-brands fa-github-alt"></i>
+                    &nbsp; Github
+                </a>
+    
+                <a href="{{ url_for('search') }}" class="navbar-item">
+                    <i class="fa-solid fa-gears"></i>
+                    &nbsp; Experts
+                </a>
+    
+                <a href="" class="navbar-item">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    &nbsp; Query Search <small class="is-size-7">(coming soon)</small>
+                </a>
+              </div>
+          
+              <div class="navbar-end">
+                {% if user %}
+                  <div class="navbar-item">
+                      <div class="buttons">
+                        <p class="mr-4">Welcome <a class="has-text-link" href="#">{{user}}</a></p>
+                        <a class="button is-link" href="{{ url_for('logout') }}">
+                          <strong>Logout</strong>
+                        </a>
+                      </div>
+                  </div>
+                {% else %}
+                  <div class="navbar-item">
+                    <div class="buttons">
+                      <a class="button is-link" href="{{ url_for('signup') }}">
+                        <strong>Sign up</strong>
+                      </a>
+                      <a class="button is-light" href="{{ url_for('login') }}">
+                        Log in
+                      </a>
+                    </div>
+                  </div>
+                {% endif%}
+              </div>
+            <!-- End of #my-navbar -->
+            </div> 
+          </nav>
+    
+          {% block content %}
+          {% endblock content %}
+
+          {% block footer %}
+            <footer class="footer p-5">
+                <div class="content has-text-centered">
+                <p>
+                    <strong>Auguretis</strong> by <a href="#">Akoji Timothy</a>. The source code is licensed
+                    <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+                    is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+                </p>
+                </div>
+            </footer>
+          {% endblock footer %}
+    </div>
+    
+
+    {% block script %}
+      <script src="{{ url_for('static', path='js/app.js') }}"></script>
+    {% endblock script %}
+  </body>
+</html>

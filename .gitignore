@@ -1,0 +1,11 @@
+users/tc.py
+frontend/tp.py
+*.db
+*.env
+**/__pycache__/
+**/.pytest_cache/
+frontend/static/images
+
+# ignore all secret files
+**/k8s/secrets.yaml
+*.json

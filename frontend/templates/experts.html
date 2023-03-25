@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="hero-body">
+        <div class="container">
+            {% if experts %}
+                <div class="columns is-multiline">
+                        {% for expert in experts %}
+                            <div class="column is-one-third">
+                                <div class="box message is-link has-background-white">
+                                    <div class="is-size-6 has-text-weight-bold message-header">
+                                        {% if expert.display_name %}
+                                            {{expert.display_name}}
+                                        {% else %}
+                                            User {{expert.user_id}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="mt-4">
+                                        <p class="is-size-5 has-text-weight-semibold">Bio:</p>
+                                        <p class="is-size-7">
+                                            {% if expert.about %}
+                                            {{expert.about}}
+                                            {% else %}
+                                                Click View to find out more...
+                                            {% endif %} 
+                                        </p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <p class="is-size-6 has-text-weight-semibold">Stats:</p>
+                                        <small>Reputation: {{expert.reps}},</small>
+                                        <small>Number of answers: {{expert.number_of_answers}}</small>
+                                    </div>
+                                    <div class="mt-4 has-text-centered">
+                                        <a href="https://stackoverflow.com/users/{{expert.user_id}}" class="button is-link">View on stack overflow</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        {% endfor %}
+                </div>
+            
+            {% else %}
+                <div class="box has-text-centered">
+                    No Data found, try again with lowercase or try another <a href="{{ url_for('search') }}">Keyword</a> 
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: experts-frontend
+    labels:
+        app: experts-frontend
+    namespace: stack-experts
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: experts-frontend
+    template:
+        metadata:
+            labels:
+                app: experts-frontend
+        spec:
+            containers:
+                - name: frontend
+                  image: frontend:latest
+                  imagePullPolicy: Never
+                  env:
+                  - name: AMPQ_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: frontend-env-variables
+                        key: ampq
+                  ports:
+                     - containerPort: 8000

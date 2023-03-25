@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+
+{% block content %} 
+    <section class="hero-body">
+        <div class="container">
+             <!-- Container for horizontal centering -->
+            <div class="columns">
+                <!-- Columns for splitting container into two rows equally spaced -->
+                <div class="column box m-6 has-text-centered">
+                    <h1 class="is-size-4-desktop has-text-centered has-text-weight-bold mb-2">
+                        Stack Experts
+                    </h1>
+                    <div class="m-4">
+                        <i class="fa-brands fa-stack-overflow fa-5x"></i>
+                    </div>
+                    <p class="has-text-centered">
+                        <p class="has-text-weight-medium">Having trouble with your software applications?</p>
+                        <span>Find the best experts on any software engineering topic</span>
+                        <p>PS: You can try it out without an account</p>
+                    </p>
+                    <div class="mt-4">
+                        <a href="{{ url_for('search') }}">
+                            <button class="button is-link">Get started</button>
+                        </a>
+                    </div>
+                    <!-- End of box in column -->
+                </div>
+            
+                <div class="column box m-6 has-text-centered">
+                    <h1 class="is-size-4-desktop has-text-centered has-text-weight-bold mb-2">
+                        Semantic Search
+                    </h1>
+                    <div class="m-4">
+                        <i class="fa-brands fa-searchengin fa-5x has-text-warning-dark"></i>
+                    </div>
+                    <p class="has-text-centered">
+                        <p class="has-text-weight-medium">Supercharge your searches with AI <small>(Coming soon)</small></p>
+                        <span>Learn how to leverage AI powered search engines for your business</span>
+                    </p>
+                    <div class="mt-4">
+                        <a href="">
+                            <button class="button is-link">See Demo</button>
+                        </a>
+                    </div>
+                    <!-- End of box in column -->
+                </div>
+            </div>
+        </div>
+        
+    </section>
+{% endblock %} 
