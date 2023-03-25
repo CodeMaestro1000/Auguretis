@@ -9,3 +9,4 @@ frontend/static/images
 # ignore all secret files
 **/k8s/secrets.yaml
 *.json
+*.DS_Store

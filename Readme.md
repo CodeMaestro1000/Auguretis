@@ -1,6 +1,6 @@
 # Auguretis
 
-Augment your searches, save time and take your results to the next level.
+Find the most experienced experts in any areas through stackoverflow.
 
 # Design
 
